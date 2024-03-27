@@ -152,3 +152,84 @@ const myObj = {
 
 console.log(myObj.firstName.toLowerCase())
 // myObj.skills.forEach((s) => s.map()) // <-- esploderebbe nel browser con "map is not a function" :)
+
+// come possiamo definire NOI la struttura di un oggetto, in modo da verificare che diversi oggetti
+// siano strutturalmente identici o che un oggetto creato da zero ne rispetti le caratteristiche?
+// con un" "interfaccia"
+// INTERFACE
+
+interface Dog {
+  name: string
+  breed: string
+  age: number
+  furColor: string
+  numberOfPaws?: number
+  chip: boolean
+}
+
+const fufi: Dog = {
+  name: 'Fufi',
+  breed: 'German Shepard',
+  age: 5,
+  furColor: 'brown',
+  numberOfPaws: 4,
+  chip: true,
+}
+
+const ares: Dog = {
+  name: 'Ares',
+  breed: 'Pug',
+  age: 8,
+  furColor: 'cream',
+  chip: true,
+}
+
+const arrayOfDogs: Dog[] = []
+arrayOfDogs.push(fufi)
+arrayOfDogs.push(ares)
+// arrayOfDogs.push(myObj) // <-- non è un cane
+
+const justDogNames = arrayOfDogs.map((d) => d.name)
+justDogNames.forEach((name) => console.log(name.toUpperCase()))
+
+interface ItalianArea {
+  region: string
+  province: string
+}
+
+interface AmericanArea {
+  state: string
+}
+
+// GENERIC
+// Un generic è un parametro di TIPO
+// Cerchiamo di rendere Address più "GENERIC A" possibile, ammettendo sia aree americane sia aree italiane
+// segue il principo D R Y (don't repeat yourself)
+interface Address<A> {
+  city: string
+  zipCode: string
+  streetNumber: number
+  street: string
+  area: A
+}
+
+const sardinianAddress: Address<ItalianArea> = {
+  city: 'Tortolì',
+  zipCode: '08048',
+  streetNumber: 42,
+  street: 'Grazia Deleda',
+  area: {
+    region: 'Sardinia',
+    province: 'Nuoro',
+  },
+}
+
+const americanAddress: Address<AmericanArea> = {
+  city: 'Seattle',
+  zipCode: 'F5HJ34',
+  streetNumber: 567,
+  street: 'Boulevard Avenue',
+  area: {
+    state: 'Washington',
+  },
+}

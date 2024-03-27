@@ -107,4 +107,43 @@ var myObj = {
     age: 18,
 };
 console.log(myObj.firstName.toLowerCase());
-// myObj.skills.forEach((s) => s.map()) // <-- esploderebbe nel browser con "map is not a function" :)
+var fufi = {
+    name: 'Fufi',
+    breed: 'German Shepard',
+    age: 5,
+    furColor: 'brown',
+    numberOfPaws: 4,
+    chip: true,
+};
+var ares = {
+    name: 'Ares',
+    breed: 'Pug',
+    age: 8,
+    furColor: 'cream',
+    chip: true,
+};
+var arrayOfDogs = [];
+arrayOfDogs.push(fufi);
+arrayOfDogs.push(ares);
+// arrayOfDogs.push(myObj) // <-- non è un cane
+var justDogNames = arrayOfDogs.map(function (d) { return d.name; });
+justDogNames.forEach(function (name) { return console.log(name.toUpperCase()); });
+var sardinianAddress = {
+    city: 'Tortolì',
+    zipCode: '08048',
+    streetNumber: 42,
+    street: 'Grazia Deleda',
+    area: {
+        region: 'Sardinia',
+        province: 'Nuoro',
+    },
+};
+var americanAddress = {
+    city: 'Seattle',
+    zipCode: 'F5HJ34',
+    streetNumber: 567,
+    street: 'Boulevard Avenue',
+    area: {
+        state: 'Washington',
+    },
+};

@@ -60,3 +60,51 @@ console.log(lastAdditionWithTS(10)); // num2 è undefined, quindi diventa 0
 // console.log(lastAdditionWithTS('10', 10)) // num2 è undefined, quindi diventa 0
 // console.log(lastAdditionWithTS('10', '10')) // num2 è undefined, quindi diventa 0
 console.log(lastAdditionWithTS(10, 10)); // num2 è undefined, quindi diventa 0
+var sayHello = function (name, greet) {
+    return (greet || 'Ciao') + ', ' + name;
+};
+console.log(sayHello('Stefano', 'Buonasera')); // 'Buonasera, Stefano'
+console.log(sayHello('Michele', 'Buongiorno')); // 'Buongiorno, Michele'
+console.log(sayHello('Stefano')); // 'Ciao, Stefano'
+// TIPI PERSONALIZZATI (custom)
+// è possibile dichiarare come tipo di una variabile/parametro/ecc. un'UNIONE di diversi tipi ("type union")
+var mixedData = '';
+mixedData = 100;
+mixedData = 'Stefano';
+var anotherMixedData = 'stefano';
+anotherMixedData = 1000;
+// ARRAYS
+var array1 = ['stefano', 'marco', 'ilaria', 'francesco'];
+array1.push('alice');
+// array1.push(100) // <-- non posso pushare un numero dentro array1, perchè l'ho dichiarato come array di stringhe!
+var array2 = [40, 41, 42, 43];
+array2.push(100);
+var array3 = ['stefano', 10, 34, 1, 'manuel']; // un array che può accettare sia stringhe che numeri
+array3.push(6);
+array3.push('6');
+var arrayOfJustStrings = array3.filter(function (element) { return typeof element === 'string'; }); // stiamo "convincendo" TS che abbiamo filtrato solamente gli elementi di tipo stringa dall'array di tipo MyCustomType[] utilizzando l'operatore "as", che effettua un "casting" verso string[]
+arrayOfJustStrings.filter(function (element) { return console.log(element.toUpperCase()); });
+// modo alternativo di dichiarare un tipo array di stringhe
+var anotherWayOfDeclaringAnArrayOfStrings = [
+    'ciao',
+    'stefano',
+    'francesco',
+    'mia',
+];
+// array in cui OGNI elemento può essere stringa o numero
+var mixedArray1 = ['c', 1, 'r', 10];
+// TUPLA
+var tupleArray = ['stefano', 100, 'casasola'];
+// una tupla è un tipo per un array estremamente preciso nella lunghezza e nello specifico tipo di ogni elemento
+// tupleArray.push('stefano') // posso dopo la dichiarazione super-precisa alterare la lunghezza o il contenuto dell'array
+// OGGETTI
+var myObj = {
+    firstName: 'Stefano',
+    lastName: 'IFOA',
+    skills: ['js', 'ts'],
+    country: 'Italy',
+    canDrive: true,
+    age: 18,
+};
+console.log(myObj.firstName.toLowerCase());
+// myObj.skills.forEach((s) => s.map()) // <-- esploderebbe nel browser con "map is not a function" :)
